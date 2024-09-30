@@ -32,112 +32,151 @@
             </div>
          </div>
          <section class="content">
-            <div class="container-fluid">
-               <div class="card card-info">
-                  <div class="card card-outline card-info">
-                     <form action="../insert_barangay.php" method="POST">
-                        <div class="card-body">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="card-header mb-3">
-                                    <span>Barangay Captain Information</span>
-                                 </div>
-                                 <hr>
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card card-outline card-info">
+                <form action="../insert_barangay.php" method="POST">
+                    <div class="card-body">
 
-                                 <div class="row">
-                                    <!-- Full Name -->
-                                    <div class="col-md-12">
-                                       <div class="form-group">
-                                          <label for="captain_name">Full Name</label>
-                                          <input type="text" id="captain_name" name="captain_name" class="form-control"
-                                             placeholder="Full Name" required>
-                                       </div>
+                        <!-- Barangay Captain Information Section -->
+                        <div class="form-section">
+                            <h6 class="section-title">Barangay Captain Information</h6>
+                            <div class="row">
+
+                                <!-- Full Name -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="captain_name">Full Name</label>
+                                        <input type="text" id="captain_name" name="captain_name" class="form-control form-field"
+                                            placeholder="Full Name" required>
                                     </div>
-                                    <!-- Barangay Assigned -->
-                                    <div class="col-md-12">
-                                       <div class="form-group">
-                                          <label for="barangay_assigned">Barangay Assigned</label>
-                                          <select id="barangay_assigned" name="barangay_assigned" class="form-control" required>
-                                          <option value="hidden">Select Barangay</option>
-                                             <!-- List of 48 Barangays of Baggao, Cagayan -->
-                                             <option value="Adaoag">Adaoag</option>
-                                             <option value="Agaman Norte">Agaman Norte</option>
-                                             <option value="Agaman Proper">Agaman Proper</option>
-                                             <option value="Agaman Sur">Agaman Sur</option>
-                                             <option value="Annayatan">Annayatan</option>
-                                             <option value="Asassi">Asassi</option>
-                                             <option value="Asinga-Via">Asinga-Via</option>
-                                             <option value="Awallan">Awallan</option>
-                                             <option value="Bacagan">Bacagan</option>
-                                             <option value="Bagunot">Bagunot</option>
-                                             <option value="Barsat East">Barsat East</option>
-                                             <option value="Barsat West">Barsat West</option>
-                                             <option value="Bitag Grande">Bitag Grande</option>
-                                             <option value="Bitag Pequeño">Bitag Pequeño</option>
-                                             <option value="Bunugan">Bunugan</option>
-                                             <option value="Canagatan">Canagatan</option>
-                                             <option value="Carupian">Carupian</option>
-                                             <option value="Catugay">Catugay</option>
-                                             <option value="C. Versosa">C. Versosa</option>
-                                             <option value="Pobalacion(Centro)">Pobalacion(Centro) </option>
-                                             <option value="Dabbac Grande">Dabbac Grande</option>
-                                             <option value="Dalin">Dalin</option>
-                                             <option value="Dalla">Dalla</option>
-                                             <option value="Hacienda Intal">Hacienda Intal</option>
-                                             <option value="Ibulo">Ibulo</option>
-                                             <option value="Imurung">Imurung</option>
-                                             <option value="J. Pallagao">J. Pallagao</option>
-                                             <option value="Lasilat">Lasilat</option>
-                                             <option value="Mabini">Mabini</option>
-                                             <option value="Masical">Masical</option>
-                                             <option value="Mocag">Mocag</option>
-                                             <option value="Nangalinan">Nangalinan</option>
-                                             <option value="Remus">Remus</option>
-                                             <option value="San Antonio">San Antonio</option>
-                                             <option value="San Francisco">San Francisco</option>
-                                             <option value="San Isidro">San Isidro</option>
-                                             <option value="San Jose">San Jose</option>
-                                             <option value="San Miguel">San Miguel</option>
-                                             <option value="San Vicente">San Vicente</option>
-                                             <option value="Santa Margarita">Santa Margarita</option>
-                                             <option value="Santor">Santor</option>
-                                             <option value="Taguing">Taguing</option>
-                                             <option value="Taguntungan">Taguntungan</option>
-                                             <option value="Tallang">Tallang</option>
-                                             <option value="Temblique">Temblique</option>
-                                             <option value="Taytay">Taytay</option>
-                                             <option value="Tungel">Tungel</option>
-                                          </select>
-                                       </div>
+                                </div>
+
+                                <!-- Barangay Assigned -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="barangay_assigned">Barangay Assigned</label>
+                                        <select id="barangay_assigned" name="barangay_assigned" class="form-control form-field" required>
+                                            <option value="">Select Barangay</option>
+                                            <!-- List of 48 Barangays of Baggao, Cagayan -->
+                                            <option value="Adaoag">Adaoag</option>
+                                            <option value="Agaman Norte">Agaman Norte</option>
+                                            <option value="Agaman Proper">Agaman Proper</option>
+                                            <option value="Agaman Sur">Agaman Sur</option>
+                                            <option value="Annayatan">Annayatan</option>
+                                            <option value="Asassi">Asassi</option>
+                                            <option value="Asinga-Via">Asinga-Via</option>
+                                            <option value="Awallan">Awallan</option>
+                                            <option value="Bacagan">Bacagan</option>
+                                            <option value="Bagunot">Bagunot</option>
+                                            <option value="Barsat East">Barsat East</option>
+                                            <option value="Barsat West">Barsat West</option>
+                                            <option value="Bitag Grande">Bitag Grande</option>
+                                            <option value="Bitag Pequeño">Bitag Pequeño</option>
+                                            <option value="Bunugan">Bunugan</option>
+                                            <option value="Canagatan">Canagatan</option>
+                                            <option value="Carupian">Carupian</option>
+                                            <option value="Catugay">Catugay</option>
+                                            <option value="C. Versosa">C. Versosa</option>
+                                            <option value="Pobalacion(Centro)">Pobalacion(Centro)</option>
+                                            <option value="Dabbac Grande">Dabbac Grande</option>
+                                            <option value="Dalin">Dalin</option>
+                                            <option value="Dalla">Dalla</option>
+                                            <option value="Hacienda Intal">Hacienda Intal</option>
+                                            <option value="Ibulo">Ibulo</option>
+                                            <option value="Imurung">Imurung</option>
+                                            <option value="J. Pallagao">J. Pallagao</option>
+                                            <option value="Lasilat">Lasilat</option>
+                                            <option value="Mabini">Mabini</option>
+                                            <option value="Masical">Masical</option>
+                                            <option value="Mocag">Mocag</option>
+                                            <option value="Nangalinan">Nangalinan</option>
+                                            <option value="Remus">Remus</option>
+                                            <option value="San Antonio">San Antonio</option>
+                                            <option value="San Francisco">San Francisco</option>
+                                            <option value="San Isidro">San Isidro</option>
+                                            <option value="San Jose">San Jose</option>
+                                            <option value="San Miguel">San Miguel</option>
+                                            <option value="San Vicente">San Vicente</option>
+                                            <option value="Santa Margarita">Santa Margarita</option>
+                                            <option value="Santor">Santor</option>
+                                            <option value="Taguing">Taguing</option>
+                                            <option value="Taguntungan">Taguntungan</option>
+                                            <option value="Tallang">Tallang</option>
+                                            <option value="Temblique">Temblique</option>
+                                            <option value="Taytay">Taytay</option>
+                                            <option value="Tungel">Tungel</option>
+                                        </select>
                                     </div>
-                                    <!-- Contact Number -->
-                                    <div class="col-md-6">
-                                       <div class="form-group">
-                                          <label for="contact_number">Contact Number</label>
-                                          <input type="number" id="contact_number" name="contact_number"
-                                             class="form-control" placeholder="Contact Number" required>
-                                       </div>
+                                </div>
+
+                                <!-- Contact Number -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="contact_number">Contact Number</label>
+                                        <input type="number" id="contact_number" name="contact_number"
+                                            class="form-control form-field" placeholder="Contact Number" required>
                                     </div>
-                                    <!-- Email Address -->
-                                    <div class="col-md-6">
-                                       <div class="form-group">
-                                          <label for="email">Email Address</label>
-                                          <input type="email" id="email" name="email" class="form-control"
-                                             placeholder="Email Address" required>
-                                       </div>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" class="form-control form-field"
+                                            placeholder="Email Address" required>
                                     </div>
-                                    <!-- Home Address -->
-                                    <div class="col-md-12">
-                                       <div class="form-group">
-                                          <label for="address">Home Address</label>
-                                          <input type="text" id="address" name="address" class="form-control"
-                                             placeholder="Home Address" required>
-                                       </div>
+                                </div>
+
+                                <!-- Home Address -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="address">Home Address</label>
+                                        <input type="text" id="address" name="address" class="form-control form-field"
+                                            placeholder="Home Address" required>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
+                                </div>
+
+                            </div>
                         </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add Styles for PDF-like Editable Form -->
+<style>
+    .form-section {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .section-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
+    .form-field {
+        border: 1px solid #333;
+        box-shadow: none;
+    }
+    .card-footer {
+        text-align: center;
+    }
+</style>
+
  <!-- Alerts -->
  <div class="container text-center">
     <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
@@ -299,9 +338,9 @@
                               }
                            });
                         </script>
-                        <div class="card-footer">
+                        <!-- <div class="card-footer">
                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
+                        </div> -->
                      </form>
                   </div>
                </div>
