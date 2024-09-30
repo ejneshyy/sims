@@ -279,8 +279,9 @@
 </div>
 
 <!-- Edit Modal -->
+<!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Edit Senior Citizen Information</h5>
@@ -291,41 +292,56 @@
             <form action="../update_senior.php" method="POST">
                 <div class="modal-body">
                     <input type="hidden" id="edit_senior_id" name="senior_id">
-                    <div class="form-group">
-                        <label for="edit_first_name">First Name:</label>
-                        <input type="text" class="form-control" id="edit_first_name" name="first_name" required>
+                    
+                    <!-- Your Details Section -->
+                    <div class="form-section">
+                        <h6 class="section-title">Your Details</h6>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="edit_first_name">First Name:</label>
+                                <input type="text" class="form-control form-field" id="edit_first_name" name="first_name" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="edit_middle_name">Middle Name:</label>
+                                <input type="text" class="form-control form-field" id="edit_middle_name" name="middle_name">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="edit_last_name">Last Name:</label>
+                                <input type="text" class="form-control form-field" id="edit_last_name" name="last_name" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="edit_gender">Gender:</label>
+                                <select class="form-control form-field" id="edit_gender" name="gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="edit_middle_name">Middle Name:</label>
-                        <input type="text" class="form-control" id="edit_middle_name" name="middle_name">
+
+                    <!-- Address and Contact Details Section -->
+                    <div class="form-section">
+                        <h6 class="section-title">Contact and Address Details</h6>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="edit_birthday">Birthday:</label>
+                                <input type="date" class="form-control form-field" id="edit_birthday" name="birthday" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="edit_age">Age:</label>
+                                <input type="number" class="form-control form-field" id="edit_age" name="age" required>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="edit_address">Address:</label>
+                                <textarea class="form-control form-field" id="edit_address" name="address" required></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="edit_contact_number">Contact Number:</label>
+                                <input type="text" class="form-control form-field" id="edit_contact_number" name="contact_number">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="edit_last_name">Last Name:</label>
-                        <input type="text" class="form-control" id="edit_last_name" name="last_name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_gender">Gender:</label>
-                        <select class="form-control" id="edit_gender" name="gender" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_birthday">Birthday:</label>
-                        <input type="date" class="form-control" id="edit_birthday" name="birthday" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_age">Age:</label>
-                        <input type="number" class="form-control" id="edit_age" name="age" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_address">Address:</label>
-                        <textarea class="form-control" id="edit_address" name="address" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_contact_number">Contact Number:</label>
-                        <input type="text" class="form-control" id="edit_contact_number" name="contact_number">
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -335,6 +351,32 @@
         </div>
     </div>
 </div>
+
+<style>
+    .form-section {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .section-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
+    .form-field {
+        border: 1px solid #333;
+        box-shadow: none;
+    }
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+
 
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
