@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Senior Citizen Information System </title>
+   <link rel="stylesheet" href="asset/fontawesome/css/all.min.css">
+   <link rel="stylesheet" href="asset/css/adminlte.min.css">
+   <link rel="stylesheet" href="asset/css/style.css">
+   <link rel="stylesheet" href="asset/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
+   <style type="text/css">
+      table tr td {
+         padding: 0.3rem !important;
+      }
+      td a.btn {
+         font-size: 0.7rem;
+      }
+   </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+   <div class="wrapper">
+      <div class="content-wrapper">
+         <div class="content-header">
+            <div class="container-fluid">
+               <div class="row mb-2">
+                  <div class="col-sm-6">
+                     <h1 class="m-0"><span class="fa fa-hotel"></span> Manage Barangay</h1>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <section class="content">
+            <div class="container-fluid">
+               <div class="card card-info elevation-2">
+                  <br>
+                  <div class="col-md-12">
+                     <table id="example1" class="table table-bordered">
+                        <thead class="btn-cancel">
+                           <tr>
+                              <th>Barangay Name</th>
+                              <th>Contact</th>
+                              <th>Email</th>
+                              <th>Contact Person</th>
+                              <th>Contact Person No.</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody id="barangayData">
+                           <!-- Data will be inserted dynamically -->
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+
+   <!-- jQuery -->
+   <script src="asset/jquery/jquery.min.js"></script>
+   <script src="asset/js/bootstrap.bundle.min.js"></script>
+   <script src="asset/js/adminlte.js"></script>
+   <!-- DataTables  & Plugins -->
+   <script src="asset/tables/datatables/jquery.dataTables.min.js"></script>
+   <script src="asset/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+   <script>
+      $(function () {
+         $("#example1").DataTable();
+         fetchBarangayData(); // Fetch data on page load
+      });
+
+      function fetchBarangayData() {
+         $.ajax({
+            url: "fetch_barangay.php", // Fetch data from PHP script
+            method: "GET",
+            dataType: "json",
+            success: function(data) {
+               let tableBody = '';
+               $.each(data, function(index, barangay) {
+                  tableBody += `
+                     <tr>
+                        <td>${barangay.barangay_name}</td>
+                        <td>${barangay.contact}</td>
+                        <td>${barangay.email}</td>
+                        <td>${barangay.contact_person}</td>
+                        <td>${barangay.contact_person_no}</td>
+                        <td class="text-center">
+                           <a class="btn btn-sm btn-success" href="#"><i class="fa fa-edit"></i> update</a>
+                           <a class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash-alt"></i> delete</a>
+                        </td>
+                     </tr>
+                  `;
+               });
+               $('#barangayData').html(tableBody); // Insert rows into table body
+            }
+         });
+      }
+   </script>
+</body>
+</html>
