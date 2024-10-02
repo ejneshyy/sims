@@ -38,107 +38,110 @@ if ($result) {
 mysqli_close($conn);
 ?>
 
-<?php include '../includes/header.php';?>
-<?php include '../includes/sidenav.php';?>
+<?php include '../includes/header.php'; ?>
+<?php include '../includes/sidenav.php'; ?>
 
-
-      <div class="content-wrapper">
-         <div class="content-header">
-            <div class="container-fluid">
-               <div class="row mb-2">
-                  <div class="col-sm-6">
-                     <h1 class="m-0"><span class="fa fa-sort-numeric-up-alt"></span> Age Reports</h1>
-                  </div>
-                  <div class="col-sm-6">
-                     <ol class="breadcrumb float-sm-right">
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-6">
+                    <h1 class="m-0"><i class="fa fa-chart-bar"></i> Age Reports</h1>
+                </div>
+                <div class="col-6">
+                    <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Reports</li>
-                     </ol>
-                  </div>
-               </div>
+                    </ol>
+                </div>
             </div>
-         </div>
-         <section class="content">
-            <div class="container-fluid">
-               <div class="row">
-                  <div class="col-12 col-md-4 col-lg-4 col-xl-4">
-                     <div class="card">
-                        <div class="card-body">
-                           <div class="chart-title">
-                              <h4>Report By Age Bracket </h4>
-                           </div>
-                           <table class="table table-bordered mytable">
-                              <thead>
-                                 <tr>
-                                    <td><h6>Age Bracket</h6></td>
-                                    <td><h6>Number</h6></td>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <?php
-                                 foreach ($age_brackets as $bracket => $count) {
-                                     echo "<tr><td>" . htmlspecialchars($bracket) . "</td><td>" . htmlspecialchars($count) . "</td></tr>";
-                                 }
-                                 ?>
-                              </tbody>
-                           </table>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Age Bracket Report Table -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-white bg-primary">
+                            <h5 class="mb-0"><i class="fa fa-list-alt"></i> Report By Age Bracket</h5>
                         </div>
-                     </div>
-                  </div>
-                  <div class="col-12 col-md-8 col-lg-8 col-xl-8">
-                     <div class="card">
                         <div class="card-body">
-                           <div class="chart-title">
-                              <h4>Graphical Representation of Age Report</h4><br>
-                           </div>
-                           <canvas id="bargraph"></canvas>
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Age Bracket</th>
+                                        <th>Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($age_brackets as $bracket => $count): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($bracket); ?></td>
+                                            <td><?= htmlspecialchars($count); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
+                <!-- Graphical Representation of Age Report -->
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-white bg-success">
+                            <h5 class="mb-0"><i class="fa fa-chart-pie"></i> Graphical Representation</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="bargraph"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-      </div>
-      </section>
-   </div>
-   </div>
-   <!-- jQuery -->
-   <script src="../../asset/jquery/jquery.min.js"></script>
-   <script src="../../asset/js/adminlte.js"></script>
-   <script src="../../asset/js/chart.js"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-         // Dynamic data for chart
-         var ageBrackets = <?php echo json_encode(array_keys($age_brackets)); ?>;
-         var ageCounts = <?php echo json_encode(array_values($age_brackets)); ?>;
+        </div>
+    </section>
+</div>
 
-         // Bar Chart
-         var barChartData = {
-            labels: ageBrackets,
-            datasets: [{
-               label: 'Total Senior',
-               backgroundColor: 'rgb(79,129,189)',
-               borderColor: 'rgba(0, 158, 251, 1)',
-               borderWidth: 1,
-               data: ageCounts
-            }]
-         };
+<!-- JavaScript Libraries -->
+<script src="../../asset/jquery/jquery.min.js"></script>
+<script src="../../asset/js/adminlte.js"></script>
+<script src="../../asset/js/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var ageBrackets = <?= json_encode(array_keys($age_brackets)); ?>;
+        var ageCounts = <?= json_encode(array_values($age_brackets)); ?>;
 
-         var ctx = document.getElementById('bargraph').getContext('2d');
-         window.myBar = new Chart(ctx, {
+        var ctx = document.getElementById('bargraph').getContext('2d');
+        new Chart(ctx, {
             type: 'bar',
-            data: barChartData,
+            data: {
+                labels: ageBrackets,
+                datasets: [{
+                    label: 'Total Seniors',
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: ageCounts
+                }]
+            },
             options: {
-               responsive: true,
-               legend: {
-                  display: false,
-               }
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
             }
-         });
+        });
+    });
+</script>
 
-      });
-   </script>
-       <?php include '../includes/footer.php';?>
-    
+<?php include '../includes/footer.php'; ?>
 </body>
-
 </html>

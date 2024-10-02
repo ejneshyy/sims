@@ -6,13 +6,13 @@ include('../db_conn.php');
 $queryBarangay = "SELECT barangay_assigned, COUNT(*) AS total_seniors FROM senior_profiles GROUP BY barangay_assigned";
 $resultBarangay = mysqli_query($conn, $queryBarangay);
 
-$barangay_names = [];
-$barangay_counts = [];
-
-if ($resultBarangay && mysqli_num_rows($resultBarangay) > 0) {
+$barangay_data = [];
+if ($resultBarangay) {
     while ($row = mysqli_fetch_assoc($resultBarangay)) {
-        $barangay_names[] = $row['barangay_assigned'];
-        $barangay_counts[] = $row['total_seniors'];
+        $barangay_data[] = [
+            'name' => $row['barangay_assigned'],
+            'count' => $row['total_seniors']
+        ];
     }
 } else {
     die("No data found for barangays.");
@@ -22,109 +22,109 @@ if ($resultBarangay && mysqli_num_rows($resultBarangay) > 0) {
 mysqli_close($conn);
 ?>
 
-<?php include '../includes/header.php';?>
-<?php include '../includes/sidenav.php';?>
+<?php include '../includes/header.php'; ?>
+<?php include '../includes/sidenav.php'; ?>
 
-
-
-
-
-      <div class="content-wrapper">
-         <div class="content-header">
-            <div class="container-fluid">
-               <div class="row mb-2">
-                  <div class="col-sm-6">
-                     <h1 class="m-0"><span class="fa fa-hotel"></span> Barangay Reports</h1>
-                  </div>
-                  <div class="col-sm-6">
-                     <ol class="breadcrumb float-sm-right">
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-6">
+                    <h1 class="m-0"><i class="fa fa-hotel"></i> Barangay Reports</h1>
+                </div>
+                <div class="col-6">
+                    <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Reports</li>
-                     </ol>
-                  </div>
-               </div>
+                    </ol>
+                </div>
             </div>
-         </div>
-         <section class="content">
-            <div class="container-fluid">
-               <div class="row">
-                  <div class="col-12 col-md-4 col-lg-4 col-xl-4">
-                     <div class="card">
-                        <div class="card-body">
-                           <div class="chart-title">
-                              <h4>Report By Barangay </h4>
-                           </div>
-                           <table class="table table-bordered mytable">
-                              <thead>
-                                 <tr>
-                                    <td><h6>Barangay</h6></td>
-                                    <td><h6>Number</h6></td>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <?php
-                                 foreach ($barangay_names as $index => $barangay_name) {
-                                    echo "<tr><td>" . htmlspecialchars($barangay_name) . "</td><td>" . htmlspecialchars($barangay_counts[$index]) . "</td></tr>";
-                                 }
-                                 ?>
-                              </tbody>
-                           </table>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Barangay Report Table -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-white bg-primary">
+                            <h5 class="mb-0"><i class="fa fa-list-alt"></i> Report By Barangay</h5>
                         </div>
-                     </div>
-                  </div>
-                  <div class="col-12 col-md-8 col-lg-8 col-xl-8">
-                     <div class="card">
                         <div class="card-body">
-                           <div class="chart-title">
-                              <h4>Graphical Representation of Barangay Report</h4><br>
-                           </div>
-                           <canvas id="bargraph"></canvas>
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Barangay</th>
+                                        <th>Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($barangay_data as $barangay): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($barangay['name']); ?></td>
+                                            <td><?= htmlspecialchars($barangay['count']); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
+                <!-- Graphical Representation of Barangay Report -->
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-white bg-success">
+                            <h5 class="mb-0"><i class="fa fa-chart-pie"></i> Graphical Representation</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="bargraph"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-      </div>
-      </section>
-   </div>
-   </div>
-   <!-- jQuery -->
-   <script src="../../asset/jquery/jquery.min.js"></script>
-   <script src="../../asset/js/adminlte.js"></script>
-   <script src="../../asset/js/chart.js"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-         var barangayNames = <?php echo json_encode($barangay_names); ?>;
-         var barangayCounts = <?php echo json_encode($barangay_counts); ?>;
+        </div>
+    </section>
+</div>
 
-         // Bar Chart
-         var barChartData = {
-            labels: barangayNames,
-            datasets: [{
-               label: 'Total Seniors',
-               backgroundColor: 'rgb(79,129,189)',
-               borderColor: 'rgba(0, 158, 251, 1)',
-               borderWidth: 1,
-               data: barangayCounts
-            }]
-         };
+<!-- JavaScript Libraries -->
+<script src="../../asset/jquery/jquery.min.js"></script>
+<script src="../../asset/js/adminlte.js"></script>
+<script src="../../asset/js/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var barangayNames = <?= json_encode(array_column($barangay_data, 'name')); ?>;
+        var barangayCounts = <?= json_encode(array_column($barangay_data, 'count')); ?>;
 
-         var ctx = document.getElementById('bargraph').getContext('2d');
-         window.myBar = new Chart(ctx, {
+        var ctx = document.getElementById('bargraph').getContext('2d');
+        new Chart(ctx, {
             type: 'bar',
-            data: barChartData,
+            data: {
+                labels: barangayNames,
+                datasets: [{
+                    label: 'Total Seniors',
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: barangayCounts
+                }]
+            },
             options: {
-               responsive: true,
-               legend: {
-                  display: false,
-               }
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
             }
-         });
+        });
+    });
+</script>
 
-      });
-   </script>
-   <?php include '../includes/footer.php';?>
- 
+<?php include '../includes/footer.php'; ?>
 </body>
-
 </html>
