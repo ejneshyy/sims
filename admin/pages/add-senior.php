@@ -39,44 +39,45 @@ if ($result && $result->num_rows > 0) {
                  </div>
               </div>
            </div>
+
            <section class="content">
     <div class="container-fluid">
         <div class="card card-info">
             <div class="card card-outline card-info">
                 <form action="../insert-profile.php" method="post" onsubmit="return validateForm()">
-                    <div class="card-body">
+                    <div class="card-body" style="font-family: Arial, sans-serif; line-height: 1.5;">
                         
                         <!-- Personal Details Section -->
-                        <div class="form-section">
-                            <h6 class="section-title">Personal Details</h6>
+                        <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+                            <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Personal Details</h6>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="seniorId">Senior ID</label>
+                                        <label for="seniorId"><strong>Senior ID</strong></label>
                                         <input type="text" id="seniorId" name="senior_id" class="form-control form-field" placeholder="SNR-123" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="firstName">First Name</label>
+                                        <label for="firstName"><strong>First Name</strong></label>
                                         <input type="text" id="firstName" name="first_name" class="form-control form-field" placeholder="First Name" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="middleName">Middle Name</label>
+                                        <label for="middleName"><strong>Middle Name</strong></label>
                                         <input type="text" id="middleName" name="middle_name" class="form-control form-field" placeholder="Middle Name">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="lastName">Last Name</label>
+                                        <label for="lastName"><strong>Last Name</strong></label>
                                         <input type="text" id="lastName" name="last_name" class="form-control form-field" placeholder="Last Name" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="gender">Gender</label>
+                                        <label for="gender"><strong>Gender</strong></label>
                                         <select id="gender" name="gender" class="form-control form-field" required>
                                             <option value="">Select Gender</option>
                                             <option value="Male">Male</option>
@@ -84,21 +85,21 @@ if ($result && $result->num_rows > 0) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="birthday">Birthday</label>
+                                        <label for="birthday"><strong>Birthday</strong></label>
                                         <input type="date" id="birthday" name="birthday" class="form-control form-field" onchange="calculateAge()" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="age">Age</label>
+                                        <label for="age"><strong>Age</strong></label>
                                         <input type="number" id="age" name="age" class="form-control form-field" placeholder="Age" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="birthPlace">Birth Place</label>
+                                        <label for="birthPlace"><strong>Birth Place</strong></label>
                                         <input type="text" id="birthPlace" name="birth_place" class="form-control form-field" placeholder="Birth Place">
                                     </div>
                                 </div>
@@ -106,18 +107,18 @@ if ($result && $result->num_rows > 0) {
                         </div>
                         
                         <!-- Additional Details Section -->
-                        <div class="form-section">
-                            <h6 class="section-title">Additional Details</h6>
+                        <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+                            <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Additional Details</h6>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="religion">Religion</label>
+                                        <label for="religion"><strong>Religion</strong></label>
                                         <input type="text" id="religion" name="religion" class="form-control form-field" placeholder="Religion">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="civilStatus">Civil Status</label>
+                                        <label for="civilStatus"><strong>Civil Status</strong></label>
                                         <select id="civilStatus" name="civil_status" class="form-control form-field">
                                             <option value="">Select Civil Status</option>
                                             <option value="Single">Single</option>
@@ -127,56 +128,220 @@ if ($result && $result->num_rows > 0) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="spouseName">Spouse Name</label>
+                                        <label for="spouseName"><strong>Spouse Name</strong></label>
                                         <input type="text" id="spouseName" name="spouse_name" class="form-control form-field" placeholder="Spouse Name">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="spouseContact">Spouse Contact Number</label>
+                                        <label for="spouseContact"><strong>Spouse Contact Number</strong></label>
                                         <input type="text" id="spouseContact" name="spouse_contact_number" class="form-control form-field" placeholder="Spouse Contact Number">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Barangay and Address Section -->
-                        <div class="form-section">
-                            <h6 class="section-title">Barangay and Address</h6>
-                            <div class="row">
-                                <div class="col-md-3">
+                                <!-- Educational Attainment -->
+                                <div class="col-md-6 mb-3">
                                     <div class="form-group">
-                                        <label for="barangay">Barangay</label>
-                                        <select id="barangay" name="barangay_assigned" class="form-control form-field" required>
-                                            <option value="">Select Barangay</option>
-                                            <?php foreach ($barangays as $barangay): ?>
-                                                <option value="<?php echo htmlspecialchars($barangay); ?>">
-                                                    <?php echo htmlspecialchars($barangay); ?>
-                                                </option>
-                                            <?php endforeach; ?>
+                                        <label for="education"><strong>Educational Attainment:</strong></label>
+                                        <select id="education" name="educational_attainment" class="form-control form-field" style="border-radius: 8px;">
+                                            <option value="">Select Educational Attainment</option>
+                                            <option value="Elementary">Elementary</option>
+                                            <option value="High School">High School</option>
+                                            <option value="Vocational">Vocational</option>
+                                            <option value="College">College</option>
+                                            <option value="Postgraduate">Postgraduate</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <textarea id="address" name="address" class="form-control form-field" placeholder="Address"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
+                        
+                        <!-- Barangay and Address Section -->
+
+                                     
+                
+                        <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+                            <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Barangay and Address</h6>
+                            <div class="row">
+
+                                    <div class="col-md-3 mb-3">
+                                       <div class="form-group">
+                                        <label for="zone"><strong>Zone</strong></label>
+                                        <input type="text" id="zone" name="zone" class="form-control form-field" placeholder="Zone">
+                                    </div>
+                                </div>
+        <!-- Barangay Dropdown -->
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label for="barangay"><strong>Barangay</strong></label>
+                <select id="barangay" name="barangay_assigned" class="form-control form-field" required>
+                    <option value="">Select Barangay</option>
+                    <?php foreach ($barangays as $barangay): ?>
+                        <option value="<?php echo htmlspecialchars($barangay); ?>">
+                            <?php echo htmlspecialchars($barangay); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <!-- Municipality Dropdown -->
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label for="municipality"><strong>Municipality</strong></label>
+                <select id="municipality" name="municipality" class="form-control form-field" required>
+                    <option value="">Select Municipality</option>
+                    <option value="Municipality 1">Baggao</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Province Dropdown -->
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label for="province"><strong>Province</strong></label>
+                <select id="province" name="province" class="form-control form-field" required>
+                    <option value="">Select Province</option>
+                    <option value="Province 1">Cagayan</option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+                        
+<!-- Health Condition Section -->
+<div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+    <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Health Condition</h6>
+    <div class="row">
+        <!-- Sickly Section -->
+        <div class="col-md-12 mb-3">
+            <label><strong>A. Sickly (Check all that apply):</strong></label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="asthma" name="sickly[]" value="Asthma">
+                <label class="form-check-label" for="asthma">Asthma</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tuberculosis" name="sickly[]" value="Tuberculosis">
+                <label class="form-check-label" for="tuberculosis">Tuberculosis</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="hypertension" name="sickly[]" value="Hypertension">
+                <label class="form-check-label" for="hypertension">Hypertension</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="diabetic" name="sickly[]" value="Diabetic">
+                <label class="form-check-label" for="diabetic">Diabetic</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="kidneyFailure" name="sickly[]" value="Kidney Failure">
+                <label class="form-check-label" for="kidneyFailure">Kidney Failure</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="heartFailure" name="sickly[]" value="Heart Failure">
+                <label class="form-check-label" for="heartFailure">Heart Failure</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="otherSickly" name="sickly[]" value="Others">
+                <label class="form-check-label" for="otherSickly">Others</label>
+            </div>
+        </div>
+
+        <!-- Differently Able Section -->
+        <div class="col-md-12 mb-3">
+            <label><strong>B. Differently Able (State Disability, Check all that apply):</strong></label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="blind" name="disability[]" value="Blind">
+                <label class="form-check-label" for="blind">Blind</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="cripple" name="disability[]" value="Cripple (Unable to walk)">
+                <label class="form-check-label" for="cripple">Cripple (Unable to walk)</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="crossEyed" name="disability[]" value="Cross Eyed">
+                <label class="form-check-label" for="crossEyed">Cross Eyed</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="deaf" name="disability[]" value="Deaf/Impaired Hearing">
+                <label class="form-check-label" for="deaf">Deaf/Impaired Hearing</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="mentalDisability" name="disability[]" value="Mental Disability">
+                <label class="form-check-label" for="mentalDisability">Mental Disability</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="otherDisability" name="disability[]" value="Others">
+                <label class="form-check-label" for="otherDisability">Others</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Economic Status Section -->
+<div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+    <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Economic Status</h6>
+    <div class="row">
+        <!-- Pension Question -->
+        <div class="col-md-6 mb-3">
+            <label><strong>Are you receiving some form of pension?</strong></label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pension" id="pensionYes" value="Yes" onclick="togglePensionSource(true)">
+                <label class="form-check-label" for="pensionYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pension" id="pensionNo" value="No" onclick="togglePensionSource(false)">
+                <label class="form-check-label" for="pensionNo">No</label>
+            </div>
+        </div>
+        
+        <!-- Pension Source Selection (visible if Yes) -->
+        <div class="col-md-6 mb-3" id="pensionSourceSection" style="display: none;">
+            <label for="pensionSource"><strong>If yes, from what source?</strong></label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="gsis" name="pension_source[]" value="GSIS">
+                <label class="form-check-label" for="gsis">GSIS</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="sss" name="pension_source[]" value="SSS">
+                <label class="form-check-label" for="sss">SSS</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="veterans" name="pension_source[]" value="Veterans">
+                <label class="form-check-label" for="veterans">Veterans</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="otherPension" name="pension_source[]" value="Others">
+                <label class="form-check-label" for="otherPension">Others</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to toggle the pension source section -->
+<script>
+    function togglePensionSource(show) {
+        document.getElementById('pensionSourceSection').style.display = show ? 'block' : 'none';
+    }
+</script>
+
+
+                   
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+
 
 <style>
     .form-section {
@@ -241,6 +406,9 @@ if ($result && $result->num_rows > 0) {
            // Proceed with form submission
            return true;
         }
+    </script>
+    <script>
+        
     </script>
 
 <?php include '../includes/footer.php';?>
