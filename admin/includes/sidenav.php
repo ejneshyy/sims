@@ -92,8 +92,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </ul>
                 </li>
                 <!-- Reports -->
-                <li class="nav-item <?= in_array($current_page, ['age-report.php', 'gender-report.php', 'barangay-report.php']) ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= in_array($current_page, ['age-report.php', 'gender-report.php', 'barangay-report.php']) ? 'active' : '' ?>">
+                <li class="nav-item <?= in_array($current_page, ['age-report.php', 'health_stats.php' ,'gender-report.php', 'barangay-report.php']) ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= in_array($current_page, ['age-report.php','health_stats.php', 'gender-report.php', 'barangay-report.php']) ? 'active' : '' ?>">
                         <i class="nav-icon fa-solid fa-chart-pie"></i>
                         <p>Reports</p>
                         <i class="right fas fa-angle-left"></i>
@@ -106,11 +106,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                             </a>
                         </li>
                         <li class="nav-item">
-                                    <a href="health_stats.php" class="nav-link">
-                                    <i class=" nav-icon fa-solid fa-heart-pulse"></i>
-                                        <p>Health Statistics</p>
-                                    </a>
-                                </li>
+                            <a href="health_stats.php" class="nav-link <?= ($current_page == 'health_stats.php') ? 'active' : '' ?>">
+                                <i class="nav-icon fa-solid fa-sort-numeric-up-alt"></i>
+                                <p>Health Statistics</p>
+                            </a>
+                        </li>
+                 
                         <li class="nav-item">
                             <a href="gender-report.php" class="nav-link <?= ($current_page == 'gender-report.php') ? 'active' : '' ?>">
                                 <i class="nav-icon fa-solid fa-venus-mars"></i>
