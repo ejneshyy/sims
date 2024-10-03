@@ -207,7 +207,7 @@
                             <ul class="nav nav-treeview">
                   
                                 <li class="nav-item">
-                                <a href="admin_users.php" class="nav-link <?= ($current_page == 'admin_users.php') ? 'active' : '' ?>">
+                                <a href="pages/admin_users.php" class="nav-link <?= ($current_page == 'admin_users.php') ? 'active' : '' ?>">
                                         <i class="nav-icon fa-solid fa-user-shield"></i>
                                         <p>Admin</p>
                                     </a>
@@ -223,19 +223,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="age-report.php" class="nav-link">
+                                    <a href="pages/age-report.php" class="nav-link">
                                         <i class="nav-icon fa-solid fa-sort-numeric-up-alt"></i>
                                         <p>Age Bracket</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="gender-report.php" class="nav-link">
+                                    <a href="pages/gender-report.php" class="nav-link">
                                         <i class="nav-icon fa-solid fa-venus-mars"></i>
                                         <p>Gender</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="barangay-report.php" class="nav-link">
+                                    <a href="pages/health_stats.php" class="nav-link">
+                                    <i class=" nav-icon fa-solid fa-heart-pulse"></i>
+                                        <p>Health Statistics</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/barangay-report.php" class="nav-link">
                                         <i class="nav-icon fa-solid fa-hotel"></i>
                                         <p>Barangay</p>
                                     </a>

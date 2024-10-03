@@ -106,6 +106,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                             </a>
                         </li>
                         <li class="nav-item">
+                                    <a href="health_stats.php" class="nav-link">
+                                    <i class=" nav-icon fa-solid fa-heart-pulse"></i>
+                                        <p>Health Statistics</p>
+                                    </a>
+                                </li>
+                        <li class="nav-item">
                             <a href="gender-report.php" class="nav-link <?= ($current_page == 'gender-report.php') ? 'active' : '' ?>">
                                 <i class="nav-icon fa-solid fa-venus-mars"></i>
                                 <p>Gender</p>
