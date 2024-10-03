@@ -53,7 +53,7 @@ if ($result && $result->num_rows > 0) {
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="seniorId"><strong>Senior ID</strong></label>
+                                        <label for="seniorId"><strong>OSCA ID</strong></label>
                                         <input type="text" id="seniorId" name="senior_id" class="form-control form-field" placeholder="SNR-123" required>
                                     </div>
                                 </div>
@@ -75,6 +75,18 @@ if ($result && $result->num_rows > 0) {
                                         <input type="text" id="lastName" name="last_name" class="form-control form-field" placeholder="Last Name" required>
                                     </div>
                                 </div>
+                                <div class="col-md-3 mb-3">
+                    <div class="form-group">
+                        <label for="suffix"><strong>Suffix</strong></label>
+                        <select id="suffix" name="suffix" class="form-control form-field">
+                            <option value="">Select Suffix</option>
+                            <option value="Jr.">Jr.</option>
+                            <option value="Sr.">Sr.</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                        </select>
+                    </div>
+                </div>
                                 <div class="col-md-3 mb-3">
                                     <div class="form-group">
                                         <label for="gender"><strong>Gender</strong></label>
@@ -103,76 +115,101 @@ if ($result && $result->num_rows > 0) {
                                         <input type="text" id="birthPlace" name="birth_place" class="form-control form-field" placeholder="Birth Place">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Additional Details Section -->
-                        <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
-                            <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Additional Details</h6>
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-group">
-                                        <label for="religion"><strong>Religion</strong></label>
-                                        <input type="text" id="religion" name="religion" class="form-control form-field" placeholder="Religion">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-group">
-                                        <label for="civilStatus"><strong>Civil Status</strong></label>
-                                        <select id="civilStatus" name="civil_status" class="form-control form-field">
-                                            <option value="">Select Civil Status</option>
-                                            <option value="Single">Single</option>
-                                            <option value="Married">Married</option>
-                                            <option value="Widowed">Widowed</option>
-                                            <option value="Divorced">Divorced</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-group">
-                                        <label for="spouseName"><strong>Spouse Name</strong></label>
-                                        <input type="text" id="spouseName" name="spouse_name" class="form-control form-field" placeholder="Spouse Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-group">
-                                        <label for="spouseContact"><strong>Spouse Contact Number</strong></label>
-                                        <input type="text" id="spouseContact" name="spouse_contact_number" class="form-control form-field" placeholder="Spouse Contact Number">
-                                    </div>
-                                </div>
-
-                                <!-- Educational Attainment -->
                                 <div class="col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label for="education"><strong>Educational Attainment:</strong></label>
-                                        <select id="education" name="educational_attainment" class="form-control form-field" style="border-radius: 8px;">
-                                            <option value="">Select Educational Attainment</option>
-                                            <option value="Elementary">Elementary</option>
-                                            <option value="High School">High School</option>
-                                            <option value="Vocational">Vocational</option>
-                                            <option value="College">College</option>
-                                            <option value="Postgraduate">Postgraduate</option>
-                                        </select>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="education"><strong>Educational Attainment:</strong></label>
+                                    <select id="education" name="educational_attainment" class="form-control form-field" style="border-radius: 8px;">
+                                        <option value="">Select Educational Attainment</option>
+                                        <option value="Elementary">Elementary</option>
+                                        <option value="High School">High School</option>
+                                        <option value="Vocational">Vocational</option>
+                                        <option value="College">College</option>
+                                        <option value="Postgraduate">Postgraduate</option>
+                                    </select>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+
+                    <!-- Additional Details Section -->
+                <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+                    <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Additional Details</h6>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="religion"><strong>Religion</strong></label>
+                                <input type="text" id="religion" name="religion" class="form-control form-field" placeholder="Religion">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="civilStatus"><strong>Civil Status</strong></label>
+                                <select id="civilStatus" name="civil_status" class="form-control form-field" onchange="toggleSpouseInfo()">
+                                    <option value="">Select Civil Status</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Widowed">Widowed</option>
+                                    <option value="Divorced">Divorced</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spouse Information Section (Visible only if Married is selected) -->
+                    <div id="spouseInfo" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="spouseFirstName"><strong>Spouse First Name</strong></label>
+                                    <input type="text" id="spouseFirstName" name="spouse_first_name" class="form-control form-field" placeholder="Spouse First Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="spouseMiddleName"><strong>Spouse Middle Name</strong></label>
+                                    <input type="text" id="spouseMiddleName" name="spouse_middle_name" class="form-control form-field" placeholder="Spouse Middle Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="spouseLastName"><strong>Spouse Last Name</strong></label>
+                                    <input type="text" id="spouseLastName" name="spouse_last_name" class="form-control form-field" placeholder="Spouse Last Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="spouseSuffix"><strong>Spouse Suffix</strong></label>
+                                    <select id="spouseSuffix" name="spouse_suffix" class="form-control form-field">
+                                        <option value="">Select Suffix</option>
+                                        <option value="Jr.">Jr.</option>
+                                        <option value="Sr.">Sr.</option>
+                                        <option value="III">III</option>
+                                        <option value="IV">IV</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="spouseContact"><strong>Spouse Contact Number</strong></label>
+                                    <input type="text" id="spouseContact" name="spouse_contact_number" class="form-control form-field" placeholder="Spouse Contact Number">
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        <!-- Barangay and Address Section -->
+                    </div>            
+                </div>
 
-                                     
-                
-                        <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
-                            <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Barangay and Address</h6>
-                            <div class="row">
+         
+<!-- Barangay and Address Section -->
+<div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+    <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Barangay and Address</h6>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+                <label for="zone"><strong>Zone</strong></label>
+                <input type="text" id="zone" name="zone" class="form-control form-field" placeholder="Zone">
+            </div>
+        </div>
 
-                                    <div class="col-md-3 mb-3">
-                                       <div class="form-group">
-                                        <label for="zone"><strong>Zone</strong></label>
-                                        <input type="text" id="zone" name="zone" class="form-control form-field" placeholder="Zone">
-                                    </div>
-                                </div>
         <!-- Barangay Dropdown -->
         <div class="col-md-3 mb-3">
             <div class="form-group">
@@ -194,7 +231,7 @@ if ($result && $result->num_rows > 0) {
                 <label for="municipality"><strong>Municipality</strong></label>
                 <select id="municipality" name="municipality" class="form-control form-field" required>
                     <option value="">Select Municipality</option>
-                    <option value="Municipality 1">Baggao</option>
+                    <option value="Baggao">Baggao</option>
                 </select>
             </div>
         </div>
@@ -205,131 +242,147 @@ if ($result && $result->num_rows > 0) {
                 <label for="province"><strong>Province</strong></label>
                 <select id="province" name="province" class="form-control form-field" required>
                     <option value="">Select Province</option>
-                    <option value="Province 1">Cagayan</option>
-
+                    <option value="Cagayan">Cagayan</option>
                 </select>
             </div>
         </div>
     </div>
 </div>
 
+<!-- JavaScript to handle automatic selection -->
+<script>
+    document.getElementById('barangay').addEventListener('change', function() {
+        const selectedBarangay = this.value;
+
+        // Assuming Baggao is the municipality for the selected barangays
+        if (selectedBarangay) {
+            document.getElementById('municipality').value = 'Baggao';
+            document.getElementById('province').value = 'Cagayan';
+        } else {
+            // Reset municipality and province if no barangay is selected
+            document.getElementById('municipality').value = '';
+            document.getElementById('province').value = '';
+        }
+    });
+</script>
+
                         
-<!-- Health Condition Section -->
-<div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
-    <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Health Condition</h6>
-    <div class="row">
-        <!-- Sickly Section -->
-        <div class="col-md-12 mb-3">
-            <label><strong>A. Sickly (Check all that apply):</strong></label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="asthma" name="sickly[]" value="Asthma">
-                <label class="form-check-label" for="asthma">Asthma</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="tuberculosis" name="sickly[]" value="Tuberculosis">
-                <label class="form-check-label" for="tuberculosis">Tuberculosis</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="hypertension" name="sickly[]" value="Hypertension">
-                <label class="form-check-label" for="hypertension">Hypertension</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="diabetic" name="sickly[]" value="Diabetic">
-                <label class="form-check-label" for="diabetic">Diabetic</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="kidneyFailure" name="sickly[]" value="Kidney Failure">
-                <label class="form-check-label" for="kidneyFailure">Kidney Failure</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="heartFailure" name="sickly[]" value="Heart Failure">
-                <label class="form-check-label" for="heartFailure">Heart Failure</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="otherSickly" name="sickly[]" value="Others" onclick="toggleInputField('otherSickly', 'sicklyOtherInput')">
-                <label class="form-check-label" for="otherSickly">Others</label>
-            </div>
-            <div class="mt-2" id="sicklyOtherInput" style="display: none;">
-                <input type="text" class="form-control" name="sickly_other" placeholder="Please specify other health conditions">
-            </div>
-        </div>
+                            <!-- Health Condition Section -->
+                            <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+                                <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Health Condition</h6>
+                                <div class="row">
+                                    <!-- Sickly Section -->
+                                    <div class="col-md-12 mb-3">
+                                        <label><strong>A. Sickly (Check all that apply):</strong></label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="asthma" name="sickly[]" value="Asthma">
+                                            <label class="form-check-label" for="asthma">Asthma</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="tuberculosis" name="sickly[]" value="Tuberculosis">
+                                            <label class="form-check-label" for="tuberculosis">Tuberculosis</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="hypertension" name="sickly[]" value="Hypertension">
+                                            <label class="form-check-label" for="hypertension">Hypertension</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="diabetic" name="sickly[]" value="Diabetic">
+                                            <label class="form-check-label" for="diabetic">Diabetic</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="kidneyFailure" name="sickly[]" value="Kidney Failure">
+                                            <label class="form-check-label" for="kidneyFailure">Kidney Failure</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="heartFailure" name="sickly[]" value="Heart Failure">
+                                            <label class="form-check-label" for="heartFailure">Heart Failure</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="otherSickly" name="sickly[]" value="Others" onclick="toggleInputField('otherSickly', 'sicklyOtherInput')">
+                                            <label class="form-check-label" for="otherSickly">Others</label>
+                                        </div>
+                                        <div class="mt-2" id="sicklyOtherInput" style="display: none;">
+                                            <input type="text" class="form-control" name="sickly_other" placeholder="Please specify other health conditions">
+                                        </div>
+                                    </div>
 
-        <!-- Differently Able Section -->
-        <div class="col-md-12 mb-3">
-            <label><strong>B. Differently Able (State Disability, Check all that apply):</strong></label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="blind" name="disability[]" value="Blind">
-                <label class="form-check-label" for="blind">Blind</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="cripple" name="disability[]" value="Cripple (Unable to walk)">
-                <label class="form-check-label" for="cripple">Cripple (Unable to walk)</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="crossEyed" name="disability[]" value="Cross Eyed">
-                <label class="form-check-label" for="crossEyed">Cross Eyed</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="deaf" name="disability[]" value="Deaf/Impaired Hearing">
-                <label class="form-check-label" for="deaf">Deaf/Impaired Hearing</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="mentalDisability" name="disability[]" value="Mental Disability">
-                <label class="form-check-label" for="mentalDisability">Mental Disability</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="otherDisability" name="disability[]" value="Others" onclick="toggleInputField('otherDisability', 'disabilityOtherInput')">
-                <label class="form-check-label" for="otherDisability">Others</label>
-            </div>
-            <div class="mt-2" id="disabilityOtherInput" style="display: none;">
-                <input type="text" class="form-control" name="disability_other" placeholder="Please specify other disabilities">
-            </div>
-        </div>
-    </div>
-</div>
-
-
+                                    <!-- Differently Able Section -->
+                                    <div class="col-md-12 mb-3">
+                                        <label><strong>B. Differently Able (State Disability, Check all that apply):</strong></label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="blind" name="disability[]" value="Blind">
+                                            <label class="form-check-label" for="blind">Blind</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="cripple" name="disability[]" value="Cripple (Unable to walk)">
+                                            <label class="form-check-label" for="cripple">Cripple (Unable to walk)</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="crossEyed" name="disability[]" value="Cross Eyed">
+                                            <label class="form-check-label" for="crossEyed">Cross Eyed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="deaf" name="disability[]" value="Deaf/Impaired Hearing">
+                                            <label class="form-check-label" for="deaf">Deaf/Impaired Hearing</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="mentalDisability" name="disability[]" value="Mental Disability">
+                                            <label class="form-check-label" for="mentalDisability">Mental Disability</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="otherDisability" name="disability[]" value="Others" onclick="toggleInputField('otherDisability', 'disabilityOtherInput')">
+                                            <label class="form-check-label" for="otherDisability">Others</label>
+                                        </div>
+                                        <div class="mt-2" id="disabilityOtherInput" style="display: none;">
+                                            <input type="text" class="form-control" name="disability_other" placeholder="Please specify other disabilities">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-<!-- Economic Status Section -->
-<div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
-    <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Economic Status</h6>
-    <div class="row">
-        <!-- Pension Question -->
-        <div class="col-md-6 mb-3">
-            <label><strong>Are you receiving some form of pension?</strong></label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="pension" id="pensionYes" value="Yes" onclick="togglePensionSource(true)">
-                <label class="form-check-label" for="pensionYes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="pension" id="pensionNo" value="No" onclick="togglePensionSource(false)">
-                <label class="form-check-label" for="pensionNo">No</label>
-            </div>
-        </div>
-        
-        <!-- Pension Source Selection (visible if Yes) -->
-        <div class="col-md-6 mb-3" id="pensionSourceSection" style="display: none;">
-            <label for="pensionSource"><strong>If yes, from what source?</strong></label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="gsis" name="pension_source[]" value="GSIS">
-                <label class="form-check-label" for="gsis">GSIS</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="sss" name="pension_source[]" value="SSS">
-                <label class="form-check-label" for="sss">SSS</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="veterans" name="pension_source[]" value="Veterans">
-                <label class="form-check-label" for="veterans">Veterans</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="otherPension" name="pension_source[]" value="Others">
-                <label class="form-check-label" for="otherPension">Others</label>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+                            <!-- Economic Status Section -->
+                            <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
+                                <h6 class="section-title mb-3" style="font-size: 1.2rem; font-weight: bold; color: #495057;">Economic Status</h6>
+                                <div class="row">
+                                    <!-- Pension Question -->
+                                    <div class="col-md-6 mb-3">
+                                        <label><strong>Are you receiving some form of pension?</strong></label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="pension" id="pensionYes" value="Yes" onclick="togglePensionSource(true)">
+                                            <label class="form-check-label" for="pensionYes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="pension" id="pensionNo" value="No" onclick="togglePensionSource(false)">
+                                            <label class="form-check-label" for="pensionNo">No</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pension Source Selection (visible if Yes) -->
+                                    <div class="col-md-6 mb-3" id="pensionSourceSection" style="display: none;">
+                                        <label for="pensionSource"><strong>If yes, from what source?</strong></label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="gsis" name="pension_source[]" value="GSIS">
+                                            <label class="form-check-label" for="gsis">GSIS</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="sss" name="pension_source[]" value="SSS">
+                                            <label class="form-check-label" for="sss">SSS</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="veterans" name="pension_source[]" value="Veterans">
+                                            <label class="form-check-label" for="veterans">Veterans</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="otherPension" name="pension_source[]" value="Others">
+                                            <label class="form-check-label" for="otherPension">Others</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 <!-- JavaScript to toggle the pension source section -->
 <script>
@@ -417,18 +470,27 @@ if ($result && $result->num_rows > 0) {
         }
     </script>
     <!-- JavaScript to toggle input fields when "Others" is selected -->
-<script>
-    function toggleInputField(checkboxId, inputFieldId) {
-        var checkbox = document.getElementById(checkboxId);
-        var inputField = document.getElementById(inputFieldId);
-        if (checkbox.checked) {
-            inputField.style.display = 'block';
-        } else {
-            inputField.style.display = 'none';
-            inputField.querySelector('input').value = ''; // Clear the input if hidden
-        }
-    }
-</script>
+            <script>
+                function toggleInputField(checkboxId, inputFieldId) {
+                    var checkbox = document.getElementById(checkboxId);
+                    var inputField = document.getElementById(inputFieldId);
+                    if (checkbox.checked) {
+                        inputField.style.display = 'block';
+                    } else {
+                        inputField.style.display = 'none';
+                        inputField.querySelector('input').value = ''; // Clear the input if hidden
+                    }
+                }
+            </script>
+               <!-- JavaScript to toggle Spouse Information Section -->
+               <script>
+                function toggleSpouseInfo() {
+                    const civilStatus = document.getElementById('civilStatus').value;
+                    const spouseInfo = document.getElementById('spouseInfo');
+                    spouseInfo.style.display = civilStatus === 'Married' ? 'block' : 'none';
+                }
+            </script>
+
     <script>
         
     </script>
