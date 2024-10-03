@@ -246,8 +246,11 @@ if ($result && $result->num_rows > 0) {
                 <label class="form-check-label" for="heartFailure">Heart Failure</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="otherSickly" name="sickly[]" value="Others">
+                <input class="form-check-input" type="checkbox" id="otherSickly" name="sickly[]" value="Others" onclick="toggleInputField('otherSickly', 'sicklyOtherInput')">
                 <label class="form-check-label" for="otherSickly">Others</label>
+            </div>
+            <div class="mt-2" id="sicklyOtherInput" style="display: none;">
+                <input type="text" class="form-control" name="sickly_other" placeholder="Please specify other health conditions">
             </div>
         </div>
 
@@ -275,12 +278,18 @@ if ($result && $result->num_rows > 0) {
                 <label class="form-check-label" for="mentalDisability">Mental Disability</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="otherDisability" name="disability[]" value="Others">
+                <input class="form-check-input" type="checkbox" id="otherDisability" name="disability[]" value="Others" onclick="toggleInputField('otherDisability', 'disabilityOtherInput')">
                 <label class="form-check-label" for="otherDisability">Others</label>
+            </div>
+            <div class="mt-2" id="disabilityOtherInput" style="display: none;">
+                <input type="text" class="form-control" name="disability_other" placeholder="Please specify other disabilities">
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- Economic Status Section -->
 <div class="form-section mb-4 p-4" style="border: 1px solid #ced4da; border-radius: 8px;">
@@ -407,6 +416,19 @@ if ($result && $result->num_rows > 0) {
            return true;
         }
     </script>
+    <!-- JavaScript to toggle input fields when "Others" is selected -->
+<script>
+    function toggleInputField(checkboxId, inputFieldId) {
+        var checkbox = document.getElementById(checkboxId);
+        var inputField = document.getElementById(inputFieldId);
+        if (checkbox.checked) {
+            inputField.style.display = 'block';
+        } else {
+            inputField.style.display = 'none';
+            inputField.querySelector('input').value = ''; // Clear the input if hidden
+        }
+    }
+</script>
     <script>
         
     </script>
